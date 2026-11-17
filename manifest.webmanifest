@@ -1,0 +1,10 @@
+{
+  "name": "Car Auction World",
+  "short_name": "Car Auction World",
+  "description": "Bid, collect and drive in a neon-lit 3D car auction world.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#101513",
+  "theme_color": "#101513",
+  "icons": []
+}

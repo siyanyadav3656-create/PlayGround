@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#101513" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="description" content="Car Auction World: bid on cars, build your garage, and take your collection for a 3D test drive." />
+  <title>Car Auction World — 3D Car Auction</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main id="game-shell">
+    <div id="world" aria-label="3D car auction world"></div>
+    <div class="world-vignette"></div>
+
+    <header class="topbar">
+      <button class="brand" id="home-button" aria-label="Return to auction home">
+        <span class="brand-mark"><span></span><span></span><span></span></span>
+        <span class="brand-copy"><b>CAR<span>AUCTION</span></b><small>WORLD</small></span>
+      </button>
+      <div class="top-status">
+        <div class="online-pill"><i></i> LIVE AUCTION</div>
+        <div class="player-chip"><span class="avatar">R</span><span class="player-name">Rookie Racer<small>LEVEL 04</small></span><span class="coin">◆</span><b id="wallet-top">$24,800</b></div>
+      </div>
+      <button class="icon-button sound-toggle" id="sound-button" aria-label="Toggle sound">♫</button>
+    </header>
+
+    <section class="game-layout">
+      <aside class="left-column">
+        <div class="eyebrow"><span class="eyebrow-line"></span> LOT 08 <span class="eyebrow-dot">•</span> 2026 SEASON</div>
+        <h1>CAR<br><em>AUCTION</em><br>WORLD</h1>
+        <p class="intro-copy">Bid for dream cars.<br>Build your ultimate garage.</p>
+
+        <div class="lot-card">
+          <div class="lot-card-head"><span>ON THE BLOCK</span><span class="condition"><i></i> EXCELLENT</span></div>
+          <div class="car-name-row"><h2 id="car-name">Vortex GT-R</h2><span id="car-year">'24</span></div>
+          <div class="car-subtitle" id="car-subtitle">V8 • TWIN TURBO • AWD</div>
+          <div class="car-stats">
+            <div><span>POWER</span><b id="car-power">612 <small>HP</small></b></div>
+            <div><span>0–60 MPH</span><b id="car-speed">3.1 <small>SEC</small></b></div>
+            <div><span>EST. VALUE</span><b id="car-value">$38.5K</b></div>
+          </div>
+          <div class="lot-progress"><div><span>AUCTION ENDS IN</span><b id="timer">00:34</b></div><div class="timer-track"><i id="timer-bar"></i></div></div>
+        </div>
+
+        <div class="bid-panel">
+          <div class="bid-info"><span>CURRENT BID</span><b id="current-bid">$18,500</b><small id="bidder-label">by <strong>TurboTom</strong></small></div>
+          <button class="bid-button" id="bid-button"><span>PLACE BID</span><b id="bid-amount">$19,000</b><i>↗</i></button>
+        </div>
+        <div class="bid-feedback" id="feedback" aria-live="polite"></div>
+      </aside>
+
+      <section class="right-column">
+        <div class="world-label"><span class="world-icon">◈</span><div><b>CAR AUCTION WORLD</b><small>OPEN WORLD · NIGHT</small></div><span class="weather">☾ &nbsp; 18°</span></div>
+        <div class="quick-actions">
+          <button class="action-chip active" data-mode="auction"><span>◉</span> AUCTION</button>
+          <button class="action-chip" data-mode="drive"><span>⌁</span> TEST DRIVE</button>
+          <button class="action-chip" id="camera-button"><span>⤢</span> ORBIT CAM</button>
+        </div>
+        <div class="drive-hint" id="drive-hint">WASD / ARROWS TO DRIVE <span>·</span> SPACE TO BRAKE</div>
+      </section>
+    </section>
+
+    <footer class="bottom-bar">
+      <div class="garage-strip">
+        <div class="garage-heading"><span>YOUR GARAGE</span><small><b id="garage-count">02</b> / 12</small></div>
+        <div class="garage-cars" id="garage-cars"></div>
+      </div>
+      <div class="bottom-right">
+        <button class="catalog-button" id="catalog-button"><span class="catalog-icon">▦</span><span>CAR<br><b>CATALOG</b></span><span class="button-arrow">↗</span></button>
+        <div class="keys-guide"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd><span>DRIVE</span></div>
+      </div>
+    </footer>
+
+    <div class="toast" id="toast"></div>
+    <div class="mobile-controls" id="mobile-controls" aria-label="Driving controls">
+      <div class="steering"><button data-key="ArrowLeft">◀</button><button data-key="ArrowRight">▶</button></div>
+      <div class="pedals"><button data-key="ArrowUp">▲<small>GO</small></button><button data-key="ArrowDown">▼<small>BRAKE</small></button></div>
+    </div>
+
+    <div class="modal-backdrop hidden" id="catalog-modal">
+      <section class="catalog-modal" role="dialog" aria-modal="true" aria-labelledby="catalog-title">
+        <button class="modal-close" id="modal-close" aria-label="Close catalog">×</button>
+        <div class="eyebrow"><span class="eyebrow-line"></span> TONIGHT'S PICKS</div>
+        <h2 id="catalog-title">UPCOMING <em>LOTS</em></h2>
+        <p class="modal-subtitle">Three machines. One garage spot with your name on it.</p>
+        <div id="catalog-list" class="catalog-list"></div>
+        <div class="modal-footer"><span>More lots unlock as you level up.</span><button id="back-to-block">BACK TO THE BLOCK <b>↗</b></button></div>
+      </section>
+    </div>
+    <div class="toast-layer" id="toast-layer"></div>
+  </main>
+  <script type="module" src="game.js"></script>
+</body>
+</html>
